@@ -4,46 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Felix AI | The Local Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --red: #D32F2F;
+            --black: #111111;
+            --bg: #FAFAFA;
+            --white: #FFFFFF;
+            --yellow: #FFF9C4;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--black);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
         
         a {
-            color: #0000ee;
+            color: var(--black);
             text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--red);
         }
 
         .header {
-            background-color: #cc0000; /* Retro Red */
-            color: #ffffff;
-            padding: 15px 20px;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 16px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #990000;
+            border-bottom: 4px solid var(--black);
         }
 
         .header a {
-            color: #ffffff;
+            color: var(--white);
             text-decoration: none;
-            font-weight: bold;
-            margin-left: 20px;
-            font-size: 14px;
+            font-weight: 500;
+            margin-left: 24px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .header a:hover {
             text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            color: var(--white);
         }
 
         .logo {
-            font-family: "Georgia", Times, serif;
+            font-family: 'Playfair Display', serif;
             font-size: 32px;
-            font-weight: bold;
+            font-weight: 700;
             font-style: italic;
             letter-spacing: -1px;
         }
@@ -51,123 +75,208 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 24px;
             text-align: center;
         }
 
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--black);
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 56px;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            color: var(--red);
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #555;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 48px auto;
+        }
+
+        /* Neo-brutalist Search Box */
         .search-container {
-            margin: 40px auto;
-            padding: 30px 20px;
-            background-color: #f4f4f4;
-            border: 2px solid #cccccc;
-            border-radius: 8px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin: 0 auto 60px auto;
+            padding: 40px 30px;
+            background-color: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 12px;
+            box-shadow: 8px 8px 0px var(--black);
+        }
+
+        .search-wrapper {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
         }
 
         .search-box {
-            width: 65%;
-            padding: 10px;
+            flex: 1;
+            max-width: 500px;
+            padding: 16px 20px;
             font-size: 18px;
-            border: 2px solid #000000;
-            font-family: Arial, Helvetica, sans-serif;
+            border: 3px solid var(--black);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--red);
         }
 
         .search-button {
-            padding: 10px 20px;
+            padding: 16px 32px;
             font-size: 18px;
-            background-color: #eeeeee;
-            border: 2px solid #000000;
+            background-color: var(--red);
+            color: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 4px 4px 0px var(--black);
+            transition: transform 0.1s, box-shadow 0.1s;
         }
 
         .search-button:active {
-            background-color: #cccccc;
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--red);
+            background: #FFEBEE;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #FFCDD2;
         }
 
         .section {
             text-align: left;
-            margin-top: 60px;
-            border-top: 2px dashed #cccccc;
-            padding-top: 40px;
-        }
-
-        h1, h2, h3 {
-            font-family: "Georgia", Times, serif;
-            color: #cc0000;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            margin-top: 80px;
+            border-top: 3px solid var(--black);
+            padding-top: 60px;
         }
 
         h2 {
-            border-bottom: 2px solid #cc0000;
-            padding-bottom: 5px;
-            font-size: 28px;
+            font-size: 40px;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
         }
 
-        h3 {
+        .lead-text {
             font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        p {
-            line-height: 1.5;
+            color: #444;
+            margin-bottom: 40px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 40px;
         }
 
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .search-box {
-                width: 100%;
-                box-sizing: border-box;
-                margin-bottom: 10px;
-            }
-            .header {
-                flex-direction: column;
-                gap: 10px;
-            }
+        .feature-box h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
         }
 
+        .feature-box p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        /* Modern Terminal/Sticky Note */
         .mockup {
-            border: 2px solid #000000;
-            background-color: #ffffcc; /* Retro yellow sticky note vibe */
-            padding: 20px;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 14px;
-            margin-top: 20px;
-            box-shadow: 3px 3px 0px #000000;
+            border: 3px solid var(--black);
+            background-color: var(--yellow);
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            margin-top: 10px;
+            box-shadow: 6px 6px 0px var(--black);
+            color: var(--black);
+        }
+
+        .mockup strong {
+            color: var(--red);
+        }
+
+        /* Waitlist Box */
+        .waitlist-box {
+            text-align: center;
+            background-color: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 16px;
+            padding: 60px 40px;
+            margin-top: 80px;
+            box-shadow: 12px 12px 0px var(--red);
+        }
+
+        .waitlist-box h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            border: none;
+        }
+
+        .waitlist-input-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
         }
 
         .footer {
-            margin-top: 60px;
-            padding: 30px 20px;
+            margin-top: 80px;
+            padding: 40px 24px;
             text-align: center;
-            font-size: 12px;
-            color: #666666;
-            border-top: 1px solid #cccccc;
-            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #666;
+            border-top: 3px solid var(--black);
+            background-color: var(--white);
+            font-weight: 500;
         }
 
-        .waitlist-box {
-            text-align: center;
-            background-color: #fdfdfd;
-            border: 2px solid #cc0000;
-            padding: 40px;
-            margin-top: 50px;
-            box-shadow: 4px 4px 0px rgba(204, 0, 0, 0.2);
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .search-wrapper {
+                flex-direction: column;
+            }
+            .search-box {
+                max-width: 100%;
+            }
+            h1 {
+                font-size: 44px;
+            }
+            .header {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .header a {
+                margin: 0 10px;
+            }
+            .waitlist-input-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -183,33 +292,35 @@
     </div>
 
     <div class="container">
-        <h1>Please, Ask Felix.</h1>
-        <p style="font-size: 20px; color: #444444; font-family: 'Georgia', serif; font-style: italic;">
+        <h1>Please, <span>Ask Felix.</span></h1>
+        <p class="subtitle">
             Intelligence that runs on your metal. No cloud tax, no data harvesting.
         </p>
         
         <div class="search-container">
-            <input type="text" class="search-box" value="Cancel my 10am and text Sarah...">
-            <button class="search-button">Ask</button>
-            <p style="font-size: 13px; color: #666666; margin-top: 15px;">
-                <strong>Status:</strong> Running natively on your local device.
-            </p>
+            <div class="search-wrapper">
+                <input type="text" class="search-box" value="Cancel my 10am and text Sarah...">
+                <button class="search-button">Ask</button>
+            </div>
+            <div class="status-badge">
+                ● Running natively on your local device
+            </div>
         </div>
 
         <div class="section" id="flagship">
-            <h2>Our Flagship: Felix Assistant for Android</h2>
-            <p style="font-size: 18px;">A true drop-in replacement for Google Assistant. Felix takes over your home button and runs powerful language models natively on your phone's hardware.</p>
+            <h2>Our Flagship: Felix Assistant</h2>
+            <p class="lead-text">A true drop-in replacement for Google Assistant. Felix takes over your home button and runs powerful language models natively on your phone's hardware.</p>
             
             <div class="grid">
-                <div>
+                <div class="feature-box">
                     <h3>Absolute Privacy</h3>
                     <p>Your conversations, contacts, and calendar never leave the device. Inference happens locally via LiteRT.</p>
                 </div>
-                <div>
+                <div class="feature-box">
                     <h3>Agentic OS Control</h3>
                     <p>Not just a chatbot. Felix deterministically controls your alarms, reads your calendar, and manages device settings.</p>
                 </div>
-                <div>
+                <div class="feature-box">
                     <h3>You Own The Models</h3>
                     <p>Download and swap models like E2B and E4B directly to your local storage. You control the brain.</p>
                 </div>
@@ -225,14 +336,14 @@
 
         <div class="section" id="lab">
             <h2>Inside the Felix AI Lab</h2>
-            <p style="font-size: 18px;">The Assistant is just the beginning. We are building the infrastructure for autonomous, private intelligence.</p>
+            <p class="lead-text">The Assistant is just the beginning. We are building the infrastructure for autonomous, private intelligence.</p>
             
             <div class="grid">
-                <div>
+                <div class="feature-box">
                     <h3>Project Kibble</h3>
                     <p>A self-maintaining brain for agentic systems. Kibble watches work happen, distills what matters, and feeds models curated context. It lets small, cheap local models perform like expensive cloud ones.</p>
                 </div>
-                <div>
+                <div class="feature-box">
                     <h3>Agentic OS Substrate</h3>
                     <p>Moving beyond API wrappers. We are designing native runtime substrates that give AI models deep, deterministic control over file systems and OS-level routing without hallucinated execution.</p>
                 </div>
@@ -240,11 +351,11 @@
         </div>
 
         <div class="waitlist-box">
-            <h2 style="border: none; padding: 0; margin-top: 0;">Take back your intelligence.</h2>
-            <p>Felix Assistant is currently in private Alpha. Enter your email to join the waitlist.</p>
-            <div style="margin-top: 20px;">
-                <input type="text" style="padding: 10px; width: 250px; border: 2px solid #000; font-size: 16px;" placeholder="Email address...">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #cc0000; color: #fff; border: 2px solid #000; font-weight: bold; cursor: pointer;">Subscribe</button>
+            <h2>Take back your intelligence.</h2>
+            <p style="color: #555; font-size: 18px; margin-bottom: 0;">Felix Assistant is currently in private Alpha. Join the waitlist.</p>
+            <div class="waitlist-input-group">
+                <input type="text" class="search-box" style="margin:0;" placeholder="Email address...">
+                <button class="search-button" style="margin:0;">Subscribe</button>
             </div>
         </div>
 
@@ -252,7 +363,7 @@
 
     <div class="footer">
         &copy; 2026 Felix AI. <br>
-        <span style="font-style: italic;">Best viewed in Netscape Navigator.</span>
+        <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #999; margin-top: 8px; display: inline-block;">Best viewed in Netscape Navigator.</span>
     </div>
 
 </body>
