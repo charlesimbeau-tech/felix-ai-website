@@ -47,14 +47,30 @@
             border-bottom: 4px solid var(--black);
         }
 
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-nav ul {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            list-style: disc;
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .header-nav li {
+            color: var(--white);
+        }
+
         .header a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            margin-left: 24px;
             font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
         }
 
         .header a:hover {
@@ -331,8 +347,10 @@
                 flex-direction: column;
                 gap: 16px;
             }
-            .header a {
-                margin: 0 10px;
+            .header-nav ul {
+                flex-direction: column;
+                gap: 8px;
+                padding-left: 18px;
             }
             .waitlist-input-group {
                 flex-direction: column;
@@ -346,11 +364,13 @@
         <div class="brand-lockup">
             <div class="logo">Felix AI.</div>
         </div>
-        <div>
-            <a href="#flagship">The Assistant</a>
-            <a href="#lab">The Lab</a>
-            <a href="https://github.com/charlesimbeau-tech/felix-ai-website">GitHub</a>
-        </div>
+        <nav class="header-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="#flagship">Assistant</a></li>
+                <li><a href="#lab">Lab</a></li>
+                <li><a href="#waitlist">Get updates</a></li>
+            </ul>
+        </nav>
     </div>
 
     <div class="container">
@@ -421,7 +441,7 @@
             </div>
         </div>
 
-        <div class="waitlist-box">
+        <div class="waitlist-box" id="waitlist">
             <h2>Take back your intelligence.</h2>
             <p style="color: #555; font-size: 18px; margin-bottom: 0;">Felix Assistant is currently in private Alpha. Join the waitlist.</p>
             <div class="waitlist-input-group">
