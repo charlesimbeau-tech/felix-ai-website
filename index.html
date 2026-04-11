@@ -70,10 +70,24 @@
             font-weight: 700;
             font-style: italic;
             letter-spacing: -1px;
+            color: var(--black);
+        }
+
+        .brand-lockup {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-icon {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 0px var(--black));
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1040px;
             margin: 0 auto;
             padding: 60px 24px;
             text-align: center;
@@ -98,10 +112,47 @@
 
         .subtitle {
             font-size: 20px;
-            color: #555;
-            font-weight: 400;
+            color: #2a2a2a;
+            font-weight: 500;
             max-width: 600px;
             margin: 0 auto 48px auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+            align-items: center;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .hero-copy {
+            text-align: left;
+        }
+
+        .hero-art {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-cat-card {
+            background: var(--red);
+            border: 3px solid var(--black);
+            border-radius: 20px;
+            box-shadow: 12px 12px 0px var(--black);
+            padding: 18px;
+            width: min(100%, 360px);
+        }
+
+        .hero-cat-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            background: var(--white);
+            border: 3px solid var(--black);
         }
 
         /* Neo-brutalist Search Box */
@@ -258,6 +309,15 @@
             .grid {
                 grid-template-columns: 1fr;
             }
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-copy {
+                text-align: center;
+            }
+            .hero-art {
+                order: -1;
+            }
             .search-wrapper {
                 flex-direction: column;
             }
@@ -283,7 +343,9 @@
 <body>
 
     <div class="header">
-        <div class="logo">Felix AI.</div>
+        <div class="brand-lockup">
+            <div class="logo">Felix AI.</div>
+        </div>
         <div>
             <a href="#flagship">The Assistant</a>
             <a href="#lab">The Lab</a>
@@ -292,10 +354,19 @@
     </div>
 
     <div class="container">
-        <h1>Please, <span>Ask Felix.</span></h1>
-        <p class="subtitle">
-            Intelligence that runs on your metal. No cloud tax, no data harvesting.
-        </p>
+        <div class="hero">
+            <div class="hero-copy">
+                <h1>Meet the future in <span>black and red.</span></h1>
+                <p class="subtitle">
+                    Felix AI builds local-first intelligence with attitude — private, fast, and actually useful. Our flagship assistant runs on your device, not somebody else's cloud.
+                </p>
+            </div>
+            <div class="hero-art">
+                <div class="hero-cat-card">
+                    <img src="./felix-cat-icon.png" alt="Felix cat mascot">
+                </div>
+            </div>
+        </div>
         
         <div class="search-container">
             <div class="search-wrapper">
